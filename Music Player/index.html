@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Search App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .search-results {
+            margin: auto;
+            margin-top: 20px;
+            width: 70%;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            cursor: pointer;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        li:hover {
+            color: #007bff;
+
+        }
+
+
+
+
+        /* Define a CSS class for the search result items */
+        .search-result {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            background-color: #e9e9e9;
+        }
+
+        .search-result:hover {
+            font-size: larger;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
+
+        /* Style the image within the search result */
+        .search-result img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        /* Style the track name text */
+        .search-result .responsive-text {
+            font-size: 16px;
+        }
+
+        /* Define media queries for responsiveness */
+        @media (max-width: 768px) {
+            .search-result {
+                flex-direction: column;
+            }
+
+            .search-result img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Music Search App</h1>
+    <input type="text" id="searchInput" placeholder="Search for music...">
+    <button id="searchButton">Search</button>
+    <div class="search-results">
+        <ul id="results"></ul>
+    </div>
+    <audio id="audio" controls></audio>
+    <script src="scriptf.js"></script>
+</body>
+
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const audio = document.getElementById("audio");
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        const results = document.getElementById("results");
+
+        async function fetchAndPlayMusic(trackId) {
+            const trackUrl = `https://spotify23.p.rapidapi.com/tracks/?ids=${trackId}`;
+            const trackOptions = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '5c6ea73d68mshe57362bc6320f56p145697jsndddc4fe85790',
+                    'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+                }
+            };
+            try {
+                const response = await fetch(trackUrl, trackOptions);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (data && data.tracks && data.tracks.length > 0) {
+                    const trackData = data.tracks[0];
+                    audio.src = trackData.preview_url;
+                    audio.play();
+                } else {
+                    console.error("No track data found.");
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        async function searchMusic(query) {
+            const url = `https://spotify23.p.rapidapi.com/search/?q=${query}&type=multi&offset=0&limit=10&numberOfTopResults=5`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '5c6ea73d68mshe57362bc6320f56p145697jsndddc4fe85790',
+                    'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+
+                // console.log(data)
+                // Clear previous results
+                results.innerHTML = "";
+
+                data.tracks.items.forEach((result) => {
+                    console.log(result);
+                    const listItem = document.createElement("li");
+                    listItem.classList.add("search-result");
+
+                    const trackName = result.data.name;
+
+                    // Create an image element and set its source to a dummy image URL
+                    const image = document.createElement("img");
+                    image.src = "https://cdn.shopify.com/app-store/listing_images/a82167e02b45cadf681efc6c17c35f3a/icon/CMmMjb30lu8CEAE=.jpg"; // Replace with your dummy image URL
+                    image.alt = "Track Image"; // Provide alt text for accessibility
+
+                    listItem.appendChild(image);
+
+                    // Create a div for the track name and apply responsive CSS
+                    const nameDiv = document.createElement("div");
+                    nameDiv.textContent = trackName;
+                    nameDiv.classList.add("responsive-text"); // Add a CSS class for responsive text
+
+                    listItem.appendChild(nameDiv);
+
+                    // Create a div for track controls
+                    const controlsDiv = document.createElement("div");
+                    controlsDiv.style.display = "flex";
+                    controlsDiv.style.alignItems = "center";
+
+                    // Create a play button
+                    const playButton = document.createElement("button");
+                    playButton.textContent = "Play";
+                    playButton.addEventListener("click", () => {
+                        const trackId = result.data.id;
+                        fetchAndPlayMusic(trackId);
+                    });
+
+                    controlsDiv.appendChild(playButton);
+
+                    // Create a pause button
+                    const pauseButton = document.createElement("button");
+                    pauseButton.textContent = "Pause";
+                    pauseButton.addEventListener("click", () => {
+                        audio.pause(); // Pause the audio
+                    });
+
+                    controlsDiv.appendChild(pauseButton);
+                    // listItem.addEventListener("click", () => {
+                    //     const trackId = result.data.id;
+                    //     fetchAndPlayMusic(trackId);
+                    // });
+                    listItem.appendChild(controlsDiv);
+                    results.appendChild(listItem);
+                });
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        searchButton.addEventListener("click", () => {
+            const query = searchInput.value;
+            if (query.trim() !== "") {
+                searchMusic(query);
+            }
+        });
+    });
+
+</script>
