@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+
+.main-div {
+    width: 100vw;
+    min-height: 100vh;
+
+    font-family: 'Stylish', sans-serif;
+
+}
+
+.inner-div {
+    width: 40vw;
+    background-color: #fef7ff;
+    padding: 3rem 8rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem -0.7rem rgb(80, 77, 77);
+}
+
+.inner-div h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 1rem 0 1.8rem 0;
+}
+
+.inner-div li {
+    font-size: 1.5rem;
+    margin: 1rem 1rem;
+    list-style: none;
+}
+
+input {
+    cursor: pointer;
+}
+
+#submit,
+.btn {
+    padding: 1rem 3rem;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: block;
+    margin: auto;
+    color: white;
+    background-color: #986576;
+    border: none;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+}
+
+#submit:hover {
+    background-color: #9089e7;
+    color: white;
+}
+
+#showScore {
+    background-color: rgba(209, 207, 207, 0.21);
+    margin-top: 2rem;
+    border-radius: 1rem;
+    padding: 3rem 4rem;
+    justify-content: center;
+    box-shadow: 0 1rem 1rem -0.7rem rgb(80, 77, 77);
+}
+
+.scoreArea {
+    display: none;
+}
+
+#showScore .btn {
+    margin-top: 1rem;
+    font-size: 1rem;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    background-color: #986576;
+}
+
+#showScore .btn:hover {
+    background-color: #9089e7;
+    color: rgb(255, 255, 255);
+}
+
+.end {
+    position: center;
+    color: white;
+    bottom: 35px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+
+
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Stylish', sans-serif;
+    background-color: #3498db;
+    /* Set your initial background color */
+    animation: changeBackgroundColor 10s infinite;
+    /* Use an animation named "changeBackgroundColor" */
+}
+
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: #3498db;
+        /* Initial color */
+    }
+
+    50% {
+        background-color: #e74c3c;
+        /* Color at 50% of the animation duration */
+    }
+
+    100% {
+        background-color: #2ecc71;
+        /* Final color */
+    }
+}
+
+
+h1 {
+    padding-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.main-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.inner-div {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.question {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.answer {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+input[type="radio"] {
+    margin-right: 1rem;
+}
+
+#submit {
+    padding: 1rem 3rem;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: block;
+    margin: auto;
+    color: white;
+    background-color: #986576;
+    border: none;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: #9089e7;
+}
+
+#showScore {
+    background-color: rgba(209, 207, 207, 0.21);
+    margin-top: 2rem;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 1rem -0.7rem rgb(80, 77, 77);
+}
+
+#showScore .btn {
+    margin-top: 1rem;
+    font-size: 1rem;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    background-color: #986576;
+    cursor: pointer;
+}
+
+#showScore .btn:hover {
+    background-color: #9089e7;
+}
+
+.end {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+}
