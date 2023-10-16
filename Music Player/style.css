@@ -1,50 +1,98 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-}
-
-.music-player {
-    width: 400px;
+    font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color: #3498db;
+    /* Set your initial background color */
+    animation: changeBackgroundColor 10s infinite;
+    /* Use an animation named "changeBackgroundColor" */
 }
-
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: #3498db; /* Initial color */
+    }
+    50% {
+        background-color: #e74c3c; /* Color at 50% of the animation duration */
+    }
+    100% {
+        background-color: #2ecc71; /* Final color */
+    }
+}
 h1 {
     font-size: 24px;
-    margin-bottom: 20px;
 }
 
-.controls {
-    margin-bottom: 20px;
+input[type="text"] {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
 }
 
 button {
+
     padding: 10px 20px;
     font-size: 16px;
-    margin: 0 10px;
 }
 
-.playlist {
-    text-align: left;
+.search-results {
+    margin: auto;
+    margin-top: 20px;
+    width: 70%;
 }
 
-.playlist ul {
+ul {
     list-style: none;
     padding: 0;
 }
 
-.playlist li {
+li {
     cursor: pointer;
-    margin-bottom: 5px;
+    margin: 10px 0;
+    font-weight: bold;
 }
 
-.playlist li:hover {
+li:hover {
     color: #007bff;
+
+}
+
+
+
+
+/* Define a CSS class for the search result items */
+.search-result {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    background-color: #e9e9e9;
+}
+
+.search-result:hover {
+    font-size: larger;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+/* Style the image within the search result */
+.search-result img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Style the track name text */
+.search-result .responsive-text {
+    font-size: 16px;
+}
+
+/* Define media queries for responsiveness */
+@media (max-width: 768px) {
+    .search-result {
+        flex-direction: column;
+    }
+
+    .search-result img {
+        margin-bottom: 10px;
+    }
 }
