@@ -106,10 +106,18 @@ submit.addEventListener('click', () => {
         loadQuestion();
 
     } else {
-        showScore.innerHTML = `
-        <h3> You scored🤩 ${score}/${quizDB.length}</h3>
-        <button class="btn" onclick="location.reload()">Restart</button>
-        `;
+        if (score === 7) {
+            showScore.innerHTML = `
+                <h3>You scored 🤩 ${score}/${quizDB.length}</h3>
+                <h3>Congratulations, You are the winner! 🏆</h3>
+                <button class="btn" onclick="location.reload()">Restart</button>
+            `;
+        } else {
+            showScore.innerHTML = `
+                <h3>You scored 🎉 ${score}/${quizDB.length}</h3>
+                <button class="btn" onclick="location.reload()">Restart</button>
+            `;
+        }
 
         showScore.classList.remove('scoreArea');
     }
