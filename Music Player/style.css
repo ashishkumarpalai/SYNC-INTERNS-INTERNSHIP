@@ -7,17 +7,24 @@ body {
     animation: changeBackgroundColor 10s infinite;
     /* Use an animation named "changeBackgroundColor" */
 }
+
 @keyframes changeBackgroundColor {
     0% {
-        background-color: #3498db; /* Initial color */
+        background-color: #3498db;
+        /* Initial color */
     }
+
     50% {
-        background-color: #e74c3c; /* Color at 50% of the animation duration */
+        background-color: #e74c3c;
+        /* Color at 50% of the animation duration */
     }
+
     100% {
-        background-color: #2ecc71; /* Final color */
+        background-color: #2ecc71;
+        /* Final color */
     }
 }
+
 h1 {
     font-size: 24px;
 }
